@@ -1,0 +1,43 @@
+<!-- 1.0 搜索框组件 -->
+<search/>
+<!-- 2.0 轮播图 -->
+<view class="slider">
+  <swiper class="slider-swiper" autoplay indicator-dots circular indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff">
+    <swiper-item wx:for="{{ swiperImgs }}" wx:key="goods_id">
+      <navigator open-type="{{ item.open_type }}" url="{{ item.new_url }}">
+        <image src="{{ item.image_src }}"></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 3.0 入口导航 -->
+<view class="nav">
+  <block wx:for="{{ navData }}" wx:key="name" wx:for-item="item2" wx:for-index="index2">
+    <view class="nav-item">
+      <image src="{{ item2.image_src }}" class="nav-icon"></image>
+    </view>
+  </block>
+</view>
+<!-- 4.0 楼层 -->
+<!-- 外层循环楼层 -->
+<block wx:for="{{ floorData }}" wx:key="">
+  <view class="floor-title">
+    <image mode="widthFix" src="{{ item.floor_title.image_src || '默认图路径' }}"></image>
+  </view>
+  <view class="floor-body">
+  <!-- 里层循环图片列表 -->
+    <block wx:for="{{ item.product_list }}" wx:key="image_src" wx:for-item="item2">
+       <navigator open-type="{{ item2.open_type }}" url="{{ item2.navigator_url }}">
+        <image style="width:{{ item2.image_width }}rpx;" src="{{ item2.image_src }}"></image>
+      </navigator>
+    </block>
+  </view>
+</block>
+
+<view class="to-top" bind:tap="toTop">
+  <view class="">🆙</view>
+  <text>顶部</text>
+</view>
+
+
+
